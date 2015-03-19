@@ -1,0 +1,30 @@
+{
+  "name": "prostore-theme-cli",
+  "version": "0.0.0",
+  "description": "Web-designer's instrument to develop theme for prostore.",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:prstr/api-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prstr/api-client/issues"
+  },
+  "bin": {
+    "prostore": "bin/prostore.js"
+  },
+  "dependencies": {
+    "fs-extra": "*",
+    "underscore": "*",
+    "nomnom": "*",
+    "prompt": "*",
+    "request": "*"
+  },
+  "keywords": [
+    "prostore",
+    "themes",
+    "cli"
+  ],
+  "author": "Nikita Shuklin",
+  "license": "ISC"
+}
