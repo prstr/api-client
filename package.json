@@ -1,0 +1,12 @@
+{
+  "name": "api-client",
+  "version": "0.0.0",
+  "description": "ProStore API Client",
+  "main": "index.js",
+  "keywords": [
+    "prostore",
+    "utils"
+  ],
+  "author": "Boris Okunskiy",
+  "license": "ISC"
+}
