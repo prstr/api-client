@@ -7,7 +7,7 @@
     "utils"
   ],
   "author": "Boris Okunskiy",
-  "main": "./lib/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:prstr/api-client.git"
@@ -15,14 +15,7 @@
   "bugs": {
     "url": "https://github.com/prstr/api-client/issues"
   },
-  "bin": {
-    "prostore": "bin/prostore.js"
-  },
   "dependencies": {
-    "fs-extra": "*",
-    "underscore": "*",
-    "nomnom": "*",
-    "prompt": "*",
     "request": "*"
   },
   "license": "ISC"

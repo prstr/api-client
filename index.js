@@ -1,29 +1,23 @@
 'use strict';
 
-var fs = require('fs')
-  , request = require('request')
-  , path = require('path')
-  , utils = require('./utils');
+var request = require('request')
+  , utils = require('./utils')
+  , done = require('./done');
 
-var ApiClient = module.exports = exports = function(store) {
-  this.store = store;
+var ApiClient = module.exports = exports = function(conf) {
+  this.store = conf.store;
+  this.publicKey = conf.publicKey;
+  this.privateKey = conf.privateKey;
+  this.secure = conf.secure;
 };
 
-ApiClient.getClient = function(dir, cb) {
+ApiClient.getClient = function(conf) {
+  if (!conf)
+    return done(new Error('Configuration is not defined.'));
+  if (typeof(conf) == 'function')
+    return done(new Error('Configuration is not defined.'));
 
-  if (typeof(dir) == 'function') {
-    cb = dir;
-    dir = process.cwd();
-  }
-
-  fs.readFile(path.join(dir, 'prostore.json'), 'utf-8', function(err, text) {
-    if (err) return cb(err);
-    try {
-      cb(null, new ApiClient(JSON.parse(text)));
-    } catch (e) {
-      cb(e);
-    }
-  });
+  return new ApiClient(conf);
 };
 
 Object.defineProperty(ApiClient.prototype, 'baseUrl', {
