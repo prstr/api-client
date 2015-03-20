@@ -1,24 +1,16 @@
 'use strict';
 
 var request = require('request')
-  , utils = require('./utils')
-  , done = require('./done');
+  , utils = require('./utils');
 
 var ApiClient = module.exports = exports = function(conf) {
+  if (!(this instanceof ApiClient))
+    return new ApiClient(conf);
   this.store = conf.store;
   this.host = conf.host;
   this.publicKey = conf.publicKey;
   this.privateKey = conf.privateKey;
   this.secure = conf.secure;
-};
-
-ApiClient.getClient = function(conf) {
-  if (!conf)
-    return done(new Error('Configuration is not defined.'));
-  if (typeof(conf) == 'function')
-    return done(new Error('Configuration is not defined.'));
-
-  return new ApiClient(conf);
 };
 
 Object.defineProperty(ApiClient.prototype, 'baseUrl', {
