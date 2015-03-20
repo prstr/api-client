@@ -6,6 +6,7 @@ var request = require('request')
 
 var ApiClient = module.exports = exports = function(conf) {
   this.store = conf.store;
+  this.host = conf.host;
   this.publicKey = conf.publicKey;
   this.privateKey = conf.privateKey;
   this.secure = conf.secure;
@@ -22,15 +23,15 @@ ApiClient.getClient = function(conf) {
 
 Object.defineProperty(ApiClient.prototype, 'baseUrl', {
   get: function() {
-    var protocol = this.store.secure ? 'https' : 'http';
-    return protocol + '://' + this.store.host + '/api';
+    var protocol = this.secure ? 'https' : 'http';
+    return protocol + '://' + this.host + '/api';
   }
 });
 
 Object.defineProperty(ApiClient.prototype, 'headers', {
   get: function() {
-    var publicKey = this.store.publicKey
-      , privateKey = this.store.privateKey
+    var publicKey = this.publicKey
+      , privateKey = this.privateKey
       , nonce = utils.randomString(32)
       , token = utils.sha256(nonce + ':' + privateKey);
     return {
