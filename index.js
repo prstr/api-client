@@ -45,17 +45,22 @@ ApiClient.prototype.request = function(method, url, data) {
     method: method ? method.toLowerCase() : undefined,
     url: url ? cli.url(url) : undefined,
     headers: cli.headers,
-    body: data
+    body: data,
+    json: true
   });
 };
 
-ApiClient.prototype.json = function(method, url, data, cb) {
-  if (typeof(data) == 'function') {
-    cb = data;
+ApiClient.prototype.get = function(url, options, cb) {
+  if (typeof options == 'function') {
+    cb = options;
+    options = {};
   }
-  this.request(method, url, data)({ json: true }, cb);
-};
-
-ApiClient.prototype.getJSON = function(url, data, cb) {
-  return this.json('get', url, data, cb);
+  var r = this.request('get', url);
+  r(options, function(err, res, data) {
+    /* istanbul ignore if */
+    if (err) return cb(err);
+    if (res.statusCode >= 400)
+      return cb(new Error('Server returned ' + res.statusCode));
+    cb(null, data);
+  })
 };
