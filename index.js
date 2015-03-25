@@ -50,33 +50,19 @@ ApiClient.prototype.request = function(method, url, data) {
   });
 };
 
-ApiClient.prototype.get = function(url, options, cb) {
-  if (typeof options == 'function') {
-    cb = options;
-    options = {};
-  }
-  var r = this.request('get', url);
-  r(options, function(err, res, data) {
-    /* istanbul ignore if */
-    if (err) return cb(err);
-    if (res.statusCode >= 400)
-      return cb(new Error('Server returned ' + res.statusCode));
-    cb(null, data);
-  })
-};
-
-ApiClient.prototype['delete'] = function(url, options, cb) {
-  if (typeof options == 'function') {
-    cb = options;
-    options = {};
-  }
-  var r = this.request('delete', url);
-  r(options, function(err, res, data) {
-    /* istanbul ignore if */
-    if (err) return cb(err);
-    if (res.statusCode >= 400)
-      return cb(new Error('Server returned ' + res.statusCode));
-    cb(null, data);
-  })
-};
-
+['get', 'post', 'put', 'delete'].forEach(function(method) {
+  ApiClient.prototype[method] = function(url, options, cb) {
+    if (typeof options == 'function') {
+      cb = options;
+      options = {};
+    }
+    var r = this.request(method, url);
+    r(options, function(err, res, data) {
+      /* istanbul ignore if */
+      if (err) return cb(err);
+      if (res.statusCode >= 400)
+        return cb(new Error('Server returned ' + res.statusCode));
+      cb(null, data);
+    })
+  };
+});
