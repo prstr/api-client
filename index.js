@@ -64,3 +64,19 @@ ApiClient.prototype.get = function(url, options, cb) {
     cb(null, data);
   })
 };
+
+ApiClient.prototype['delete'] = function(url, options, cb) {
+  if (typeof options == 'function') {
+    cb = options;
+    options = {};
+  }
+  var r = this.request('delete', url);
+  r(options, function(err, res, data) {
+    /* istanbul ignore if */
+    if (err) return cb(err);
+    if (res.statusCode >= 400)
+      return cb(new Error('Server returned ' + res.statusCode));
+    cb(null, data);
+  })
+};
+
