@@ -6,18 +6,6 @@ var request = require('request')
 /*
  * Constructs API client.
  *
- * Usage:
- *
- * ```js
- * var Client = require('prostore.api-client');
- *
- * var client = new Client({
- *   userId: '54b4c1d3bab9e22843c99ea4',
- *   url: 'https://example.store',
- *   privateToken: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
- * });
- * ```
- *
  * @module prostore.api-client
  * @class ApiClient
  * @param {object} options - options
@@ -130,16 +118,6 @@ ApiClient.prototype.request = function(method, endpoint) {
 
 /**
  * Performs a request to specified API endpoint.
- *
- * Usage:
- *
- * ```js
- * client.get('echo', function(err, data) { });
- *
- * client.post('echo', {
- *   data: 'Hello!'
- * }, function(err, data) { });
- * ```
  *
  * @param {string} endpoint - API endpoint
  * @param {object} options - options for `request`
