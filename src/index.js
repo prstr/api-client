@@ -115,7 +115,7 @@ ApiClient.prototype.url = function(endpoint) {
  *
  * @param {string} method - HTTP method
  * @param {string} endpoint - API endpoint
- * @returns {object} - request object
+ * @returns {object} request object
  * @see {@link https://github.com/request/request}
  * @memberOf ApiClient
  */
@@ -146,7 +146,7 @@ ApiClient.prototype.request = function(method, endpoint) {
  * @param {function} cb - callback `function(err, data)`
  * @see {@link https://github.com/request/request}
  * @memberOf ApiClient
- * @function <get|post|put|delete>
+ * @function get|post|put|delete
  */
 ['get', 'post', 'put', 'delete'].forEach(function(method) {
   ApiClient.prototype[method] = function(endpoint, options, cb) {
