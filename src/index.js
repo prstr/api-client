@@ -3,7 +3,7 @@
 var request = require('request')
   , utils = require('./utils');
 
-/**
+/*
  * Constructs API client.
  *
  * Usage:
@@ -19,12 +19,12 @@ var request = require('request')
  * ```
  *
  * @module prostore.api-client
+ * @class ApiClient
  * @param {object} options - options
  * @param {string} options.url - store URL including schema
  * @param {string} options.userId - ProStore user id (12-byte BSON ObjectId, hex-encoded)
  * @param {string} options.privateToken - secret token for authentication
  *   (must be obtained via API login)
- * @class ApiClient
  */
 var ApiClient = module.exports = exports = function(options) {
   if (!(this instanceof ApiClient))
@@ -146,7 +146,6 @@ ApiClient.prototype.request = function(method, endpoint) {
  * @param {function} cb - callback `function(err, data)`
  * @see {@link https://github.com/request/request}
  * @memberOf ApiClient
- * @function get|post|put|delete
  */
 ['get', 'post', 'put', 'delete'].forEach(function(method) {
   ApiClient.prototype[method] = function(endpoint, options, cb) {
