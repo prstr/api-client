@@ -23,13 +23,7 @@ var ApiClient = module.exports = exports = function(options) {
 };
 
 /**
- * Returns base URL for API endpoints.
- *
- * Example:
- *
- * ```
- * https://example.store/api
- * ```
+ * Returns base URL for API endpoints (e.g. `https://example.store/api`).
  *
  * @returns {string} base URL for API endpoints.
  * @memberOf ApiClient
@@ -84,7 +78,7 @@ ApiClient.prototype.url = function(endpoint) {
  * with specified `method`, `endpoint` (converted to URL) and auth headers
  * as defaults.
  *
- * You use it then to instantiate a request (see below).
+ * You use it then to instantiate a request.
  *
  * Example file upload:
  *
