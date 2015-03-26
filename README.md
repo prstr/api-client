@@ -6,7 +6,7 @@
   * [new ApiClient(options)](#new_ApiClient)
   * [apiClient.url(endpoint)](#ApiClient#url)
   * [apiClient.request(method, endpoint)](#ApiClient#request)
-  * [ApiClient.<get|post|put|delete>(endpoint, options, cb)](#ApiClient.<get|post|put|delete>)
+  * [ApiClient.get|post|put|delete(endpoint, options, cb)](#ApiClient.get|post|put|delete)
 
 <a name="new_ApiClient"></a>
 ##new ApiClient(options)
@@ -69,9 +69,9 @@ For simpler cases (e.g. sending-receiving JSON requests) use `get`, `post`,
 - method `string` - HTTP method  
 - endpoint `string` - API endpoint  
 
-**Returns**: `object` - - request object  
-<a name="ApiClient.<get|post|put|delete>"></a>
-##ApiClient.<get|post|put|delete>(endpoint, options, cb)
+**Returns**: `object` - request object  
+<a name="ApiClient.get|post|put|delete"></a>
+##ApiClient.get|post|put|delete(endpoint, options, cb)
 Performs a request to specified API endpoint.
 
 Usage:
