@@ -8,7 +8,7 @@ var request = require('request')
  *
  * Usage:
  *
- * ```
+ * ```js
  * var Client = require('prostore.api-client');
  *
  * var client = new Client({
@@ -57,7 +57,7 @@ Object.defineProperty(ApiClient.prototype, 'baseUrl', {
  *
  * Example:
  *
- * ```
+ * ```js
  * {
  *   'ProStore-Auth-UserId': '54b4c1d3bab9e22843c99ea4',
  *   'ProStore-Auth-Nonce': '12345678912345678912345678912345',
@@ -100,7 +100,7 @@ ApiClient.prototype.url = function(endpoint) {
  *
  * Example file upload:
  *
- * ```
+ * ```js
  * var request = client.request('post', 'admin/storage/index.html')
  * var r = request({ json: false }, function(err, resp, body) {
  *   // handle server response as you see fit
@@ -133,7 +133,7 @@ ApiClient.prototype.request = function(method, endpoint) {
  *
  * Usage:
  *
- * ```
+ * ```js
  * client.get('echo', function(err, data) { });
  *
  * client.post('echo', {
@@ -146,7 +146,7 @@ ApiClient.prototype.request = function(method, endpoint) {
  * @param {function} cb - callback `function(err, data)`
  * @see {@link https://github.com/request/request}
  * @memberOf ApiClient
- * @function [get|post|put|delete]
+ * @function <get|post|put|delete>
  */
 ['get', 'post', 'put', 'delete'].forEach(function(method) {
   ApiClient.prototype[method] = function(endpoint, options, cb) {
