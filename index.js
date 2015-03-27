@@ -1,7 +1,8 @@
 'use strict';
 
 var request = require('request')
-  , utils = require('./utils');
+  , sha256 = require('sha256')
+  , randomstring = require('randomstring').generate;
 
 /*
  * Constructs API client.
@@ -53,8 +54,8 @@ Object.defineProperty(ApiClient.prototype, 'baseUrl', {
  */
 Object.defineProperty(ApiClient.prototype, 'headers', {
   get: function() {
-    var nonce = utils.randomString(32)
-      , token = utils.sha256(nonce + ':' + this.privateToken);
+    var nonce = randomstring()
+      , token = sha256(nonce + ':' + this.privateToken);
     return {
       'ProStore-Auth-UserId': this.userId,
       'ProStore-Auth-Nonce': nonce,
