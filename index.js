@@ -18,7 +18,6 @@ var request = require('request')
 var ApiClient = module.exports = exports = function(options) {
   if (!(this instanceof ApiClient))
     return new ApiClient(options);
-  console.log(options);
   this.url = options.url.replace(/\/+$/, '');
   this.userId = options.userId;
   this.privateToken = options.privateToken;
