@@ -3,14 +3,16 @@
   "version": "0.1.2",
   "description": "ProStore API Client",
   "dependencies": {
-    "request": "*"
+    "request": "*",
+    "sha256": "*",
+    "randomstring": "*"
   },
+  "main": "index.js",
   "keywords": [
     "prostore",
     "utils"
   ],
   "author": "Boris Okunskiy",
-  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:prstr/api-client.git"
