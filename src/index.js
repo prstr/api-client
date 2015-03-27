@@ -17,6 +17,7 @@ var request = require('request')
 var ApiClient = module.exports = exports = function(options) {
   if (!(this instanceof ApiClient))
     return new ApiClient(options);
+  console.log(options);
   this.url = options.url.replace(/\/+$/, '');
   this.userId = options.userId;
   this.privateToken = options.privateToken;
@@ -69,7 +70,7 @@ Object.defineProperty(ApiClient.prototype, 'headers', {
  * @returns {string} URL (e.g. `https://example.store/api/admin/products`)
  * @memberOf ApiClient
  */
-ApiClient.prototype.url = function(endpoint) {
+ApiClient.prototype.mkurl = function(endpoint) {
   return this.baseUrl + '/' + endpoint.replace(/^\//, '');
 };
 
@@ -104,7 +105,7 @@ ApiClient.prototype.url = function(endpoint) {
 ApiClient.prototype.request = function(method, endpoint) {
   return request.defaults({
     method: method ? method.toLowerCase() : undefined,
-    url: endpoint ? this.url(endpoint) : undefined,
+    url: endpoint ? this.mkurl(endpoint) : undefined,
     headers: this.headers,
     json: true
   });
