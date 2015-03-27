@@ -130,6 +130,12 @@ ApiClient.prototype.request = function(method, endpoint) {
     r(options, function(err, res, data) {
       /* istanbul ignore if */
       if (err) return cb(err);
+      if (res.statusCode == 401)
+        return cb(new Error('401 Authentication failed'));
+      if (res.statusCode == 403)
+        return cb(new Error('403 Access denied'));
+      if (res.statusCode == 404)
+        return cb(new Error('404 Not found'));
       if (res.statusCode >= 400)
         return cb(new Error('Server returned ' + res.statusCode));
       cb(null, data);
