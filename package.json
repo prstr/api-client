@@ -1,7 +1,7 @@
 {
-  "name": "prostore.api-client",
-  "version": "0.1.6",
-  "description": "ProStore API Client",
+  "name": "prostore.rest-client",
+  "version": "0.0.0",
+  "description": "ProStore REST API Client",
   "dependencies": {
     "request": "*",
     "sha256": "*",
@@ -15,10 +15,10 @@
   "author": "Boris Okunskiy",
   "repository": {
     "type": "git",
-    "url": "git@github.com:prstr/api-client.git"
+    "url": "git@github.com:prstr/rest-client.git"
   },
   "bugs": {
-    "url": "https://github.com/prstr/api-client/issues"
+    "url": "https://github.com/prstr/rest-client/issues"
   },
   "license": "ISC"
 }

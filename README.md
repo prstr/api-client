@@ -1,6 +1,6 @@
 # API Client
 
-Библиотека для взаимодействия с API системы [ПроСтор](http://prostore.business/). 
+Библиотека для взаимодействия с REST API системы [ПроСтор](http://prostore.business/). 
 
 ## Использование
 
@@ -9,7 +9,7 @@
 2.  Создайте клиент:
 
     ```js
-    var Client = require('prostore.api-client');
+    var Client = require('prostore.rest-client');
     
     var client = new Client({
       userId: '54b4c1d3bab9e22843c99ea4',
