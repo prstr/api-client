@@ -4,7 +4,7 @@
   "description": "ProStore REST API Client",
   "dependencies": {
     "request": "*",
-    "sha256": "*",
+    "sha.js": "*",
     "randomstring": "*"
   },
   "main": "index.js",

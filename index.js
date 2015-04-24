@@ -1,7 +1,7 @@
 'use strict';
 
 var request = require('request')
-  , sha256 = require('sha256')
+  , createHash = require('sha.js')
   , randomstring = require('randomstring').generate;
 
 /*
@@ -54,7 +54,9 @@ Object.defineProperty(ApiClient.prototype, 'baseUrl', {
 Object.defineProperty(ApiClient.prototype, 'headers', {
   get: function() {
     var nonce = randomstring()
-      , token = sha256(nonce + ':' + this.privateToken);
+      , token = createHash('sha256')
+          .update(nonce + ':' + this.privateToken, 'utf-8')
+          .digest('hex');
     return {
       'ProStore-Auth-UserId': this.userId,
       'ProStore-Auth-Nonce': nonce,
