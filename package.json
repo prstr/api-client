@@ -2,12 +2,20 @@
   "name": "prostore.rest-client",
   "version": "0.0.2",
   "description": "ProStore REST API Client",
+  "main": "index.js",
   "dependencies": {
     "request": "*",
     "sha.js": "*",
     "randomstring": "*"
   },
-  "main": "index.js",
+  "devDependencies": {
+    "eslint": "*",
+    "pre-commit": "*"
+  },
+  "scripts": {
+    "pretest": "eslint ."
+  },
+  "pre-commit": [ "test" ],
   "keywords": [
     "prostore",
     "utils"

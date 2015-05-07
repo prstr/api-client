@@ -9,13 +9,13 @@ var request = require('request')
  *
  * @module prostore.api-client
  * @class ApiClient
- * @param {object} options - options
+ * @param {object} options - options
  * @param {string} options.url - store URL including schema
  * @param {string} options.userId - ProStore user id (12-byte BSON ObjectId, hex-encoded)
  * @param {string} options.privateToken - secret token for authentication
  *   (must be obtained via API login)
  */
-var ApiClient = module.exports = exports = function(options) {
+var ApiClient = module.exports = exports = function (options) {
   if (!(this instanceof ApiClient))
     return new ApiClient(options);
   this.url = options.url.replace(/\/+$/, '');
@@ -30,7 +30,7 @@ var ApiClient = module.exports = exports = function(options) {
  * @memberOf ApiClient
  */
 Object.defineProperty(ApiClient.prototype, 'baseUrl', {
-  get: function() {
+  get: function () {
     return this.url + '/api';
   }
 });
@@ -52,11 +52,11 @@ Object.defineProperty(ApiClient.prototype, 'baseUrl', {
  * @memberOf ApiClient
  */
 Object.defineProperty(ApiClient.prototype, 'headers', {
-  get: function() {
+  get: function () {
     var nonce = randomstring()
       , token = createHash('sha256')
-          .update(nonce + ':' + this.privateToken, 'utf-8')
-          .digest('hex');
+        .update(nonce + ':' + this.privateToken, 'utf-8')
+        .digest('hex');
     return {
       'ProStore-Auth-UserId': this.userId,
       'ProStore-Auth-Nonce': nonce,
@@ -72,7 +72,7 @@ Object.defineProperty(ApiClient.prototype, 'headers', {
  * @returns {string} URL (e.g. `https://example.store/api/admin/products`)
  * @memberOf ApiClient
  */
-ApiClient.prototype.mkurl = function(endpoint) {
+ApiClient.prototype.mkurl = function (endpoint) {
   return this.baseUrl + '/' + endpoint.replace(/^\//, '');
 };
 
@@ -104,7 +104,7 @@ ApiClient.prototype.mkurl = function(endpoint) {
  * @see {@link https://github.com/request/request}
  * @memberOf ApiClient
  */
-ApiClient.prototype.request = function(method, endpoint) {
+ApiClient.prototype.request = function (method, endpoint) {
   return request.defaults({
     method: method ? method.toLowerCase() : undefined,
     url: endpoint ? this.mkurl(endpoint) : undefined,
@@ -122,15 +122,14 @@ ApiClient.prototype.request = function(method, endpoint) {
  * @see {@link https://github.com/request/request}
  * @memberOf ApiClient
  */
-['get', 'post', 'put', 'delete'].forEach(function(method) {
-  ApiClient.prototype[method] = function(endpoint, options, cb) {
+['get', 'post', 'put', 'delete'].forEach(function (method) {
+  ApiClient.prototype[method] = function (endpoint, options, cb) {
     if (typeof options == 'function') {
       cb = options;
       options = {};
     }
     var r = this.request(method, endpoint);
-    r(options, function(err, res, data) {
-      /* istanbul ignore if */
+    r(options, function (err, res, data) {
       if (err) return cb(err);
       if (res.statusCode == 401)
         return cb(new Error('401 Authentication failed'));
@@ -141,6 +140,6 @@ ApiClient.prototype.request = function(method, endpoint) {
       if (res.statusCode >= 400)
         return cb(new Error('Server returned ' + res.statusCode));
       cb(null, data);
-    })
+    });
   };
 });
