@@ -31,7 +31,7 @@ var ApiClient = module.exports = exports = function (options) {
  */
 Object.defineProperty(ApiClient.prototype, 'baseUrl', {
   get: function () {
-    return this.url + '/api';
+    return this.url + '/api/v1';
   }
 });
 
